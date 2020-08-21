@@ -88,14 +88,6 @@ class UserTableRow extends Component {
      */
   }
 
-  inspectCall() {
-    // inspect call action
-
-    /*
-      1. Link to this specific user page at /users/[id]
-     */
-  }
-
   render() {
     return (
       <TableRow key={this.state.user.name}>
@@ -105,7 +97,9 @@ class UserTableRow extends Component {
         <TableCell >
           <button>edit</button>
           <button>delete</button>
-          <button>inspect</button>
+          <Link href={`users/${this.state.user.id}`}>
+            <button>inspect</button>
+          </Link>
         </TableCell>
         <TableCell>standby</TableCell>
       </TableRow>
