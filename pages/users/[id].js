@@ -1,24 +1,28 @@
-import Head from 'next/head'
-import Link from 'next/link'
+import Head          from 'next/head'
+import Link          from 'next/link'
+import { useRouter } from 'next/router'
 
 import Container  from '@material-ui/core/Container'
 import Box        from '@material-ui/core/Box'
 import Typography from '@material-ui/core/Typography';
 
-import styles from "../styles/Home.module.css";
+import styles from "../../styles/Home.module.css";
 
-export default function Home() {
+export default function User() {
+  const router = useRouter();
+  const {id} = router.query;
+
   return (
     <div className={styles.container}>
       <Head>
-        <title>Delta Solutions Task</title>
+        <title>Create Next App</title>
         <link rel="icon" href="/icon.jpg" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
       </Head>
 
       <header className={styles.header}>
         <Typography variant="h3">
-          Home page
+          User {id} page
         </Typography>
 
         <Box className={styles.nav}>
