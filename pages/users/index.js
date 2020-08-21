@@ -63,7 +63,18 @@ class UserTableRow extends Component {
     super(props);
     this.state = {
       user: props.user,
-      status: 'standby'
+      status: 'standby',
+      styles: {
+        success: {
+          color: 'lightgreen'
+        },
+        pending: {
+          color: 'yellowgreen'
+        },
+        standby: {
+          color: 'gray'
+        }
+      }
     };
 
     this.dummyApiCall = this.dummyApiCall.bind(this);
@@ -101,7 +112,7 @@ class UserTableRow extends Component {
             <button>inspect</button>
           </Link>
         </TableCell>
-        <TableCell>{this.state.status}</TableCell>
+        <TableCell style={this.state.styles[this.state.status]}>{this.state.status}</TableCell>
       </TableRow>
     )
   }
