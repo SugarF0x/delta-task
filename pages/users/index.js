@@ -310,7 +310,7 @@ export default function Users() {
   return (
     <div className={layout.container}>
       <Head>
-        <title>Create Next App</title>
+        <title>DST - Users</title>
         <link rel="icon" href="/icon.jpg" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
       </Head>

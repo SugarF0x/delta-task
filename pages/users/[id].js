@@ -15,7 +15,7 @@ export default function User() {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Create Next App</title>
+        <title>DST - User</title>
         <link rel="icon" href="/icon.jpg" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
       </Head>
