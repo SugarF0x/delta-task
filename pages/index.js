@@ -33,8 +33,10 @@ export default function Home() {
       </header>
 
       <main className={styles.main}>
-        <Container>
-
+        <Container style={{textAlign: 'center'}}>
+          <h1>This is the Home page</h1>
+          <h2>
+            Please, proceed to <Link href="/users"><a style={{color: 'lightgreen'}}><u>Users</u></a></Link> page</h2>
         </Container>
       </main>
 
