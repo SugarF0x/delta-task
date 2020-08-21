@@ -371,7 +371,7 @@ export default function Users() {
       </header>
 
       <main className={layout.main}>
-        <Container id="table">
+        <Container>
           <UserTable/>
         </Container>
       </main>
