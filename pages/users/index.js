@@ -49,21 +49,66 @@ class UserTable extends Component {
           </TableHead>
           <TableBody>
             {this.state.users.map(entry => (
-              <TableRow key={entry.name}>
-                <TableCell>{entry.name}</TableCell>
-                <TableCell>{entry.id}</TableCell>
-                <TableCell>{entry.email}</TableCell>
-                <TableCell >
-                  <button>edit</button>
-                  <button>delete</button>
-                  <button>inspect</button>
-                </TableCell>
-                <TableCell>standby</TableCell>
-              </TableRow>
+              <UserTableRow user={entry}/>
             ))}
           </TableBody>
         </Table>
       </TableContainer>
+    )
+  }
+}
+
+class UserTableRow extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      user: props.user
+    }
+  }
+
+  editCall() {
+    // edit button action
+
+    /*
+      1. Set state to loading
+      2. Send fetch put request to server
+      3. Wait for server response
+      4. Set state to success/failure based on response
+     */
+  }
+
+  deleteCall() {
+    // delete call action
+
+    /*
+      1. Set state to loading
+      2. Send fetch put request to server
+      3. Wait for server response
+      4. Set state to success/failure based on response
+     */
+  }
+
+  inspectCall() {
+    // inspect call action
+
+    /*
+      1. Link to this specific user page at /users/[id]
+     */
+  }
+
+  render() {
+    return (
+      <TableRow key={this.state.user.name}>
+        <TableCell>{this.state.user.name}</TableCell>
+        <TableCell>{this.state.user.id}</TableCell>
+        <TableCell>{this.state.user.email}</TableCell>
+        <TableCell >
+          <button>edit</button>
+          <button>delete</button>
+          <button>inspect</button>
+        </TableCell>
+        <TableCell>standby</TableCell>
+      </TableRow>
     )
   }
 }
