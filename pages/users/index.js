@@ -49,7 +49,7 @@ class UserTable extends Component {
           </TableHead>
           <TableBody>
             {this.state.users.map(entry => (
-              <UserTableRow user={entry}/>
+              <UserTableRow user={entry} key={entry.id}/>
             ))}
           </TableBody>
         </Table>
@@ -62,30 +62,30 @@ class UserTableRow extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: props.user
-    }
+      user: props.user,
+      status: 'standby'
+    };
+
+    this.dummyApiCall = this.dummyApiCall.bind(this);
   }
 
-  editCall() {
-    // edit button action
-
-    /*
-      1. Set state to loading
-      2. Send fetch put request to server
-      3. Wait for server response
-      4. Set state to success/failure based on response
-     */
-  }
-
-  deleteCall() {
-    // delete call action
-
-    /*
-      1. Set state to loading
-      2. Send fetch put request to server
-      3. Wait for server response
-      4. Set state to success/failure based on response
-     */
+  dummyApiCall() {
+    this.setState({
+      status: 'pending'
+    });
+    fetch('/api/dummy')
+      .then(res => res.json())
+      .then(res => {
+        if (res.result) {
+          this.setState({
+            status: 'success'
+          })
+        } else {
+          this.setState({
+            status: 'failed'
+          })
+        }
+      })
   }
 
   render() {
@@ -95,13 +95,13 @@ class UserTableRow extends Component {
         <TableCell>{this.state.user.id}</TableCell>
         <TableCell>{this.state.user.email}</TableCell>
         <TableCell >
-          <button>edit</button>
-          <button>delete</button>
+          <button onClick={this.dummyApiCall}>edit</button>
+          <button onClick={this.dummyApiCall}>delete</button>
           <Link href={`users/${this.state.user.id}`}>
             <button>inspect</button>
           </Link>
         </TableCell>
-        <TableCell>standby</TableCell>
+        <TableCell>{this.state.status}</TableCell>
       </TableRow>
     )
   }

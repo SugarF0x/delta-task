@@ -28,7 +28,7 @@ npm run start
 
 - [X] Create skeleton structure
 - [X] Fetch and display a table of users at `/users`
-- [ ] Edit/Delete said users through REST and display call status
+- [X] Edit/Delete said users through REST and display call status
     * (fake latency on server via setTimeout)
 - [ ] Display 5 latest user posts at `/users/[id]`
 
