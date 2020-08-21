@@ -30,7 +30,7 @@ npm run start
 - [X] Fetch and display a table of users at `/users`
 - [X] Edit/Delete said users through REST and display call status
     * (fake latency on server via setTimeout)
-- [ ] Display 5 latest user posts at `/users/[id]`
+- [X] Display 5 latest user posts at `/users/[id]`
 
 ---
 
