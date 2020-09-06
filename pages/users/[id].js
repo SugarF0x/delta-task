@@ -11,6 +11,8 @@ import {
   CardContent
 } from '@material-ui/core';
 
+import store from "../../store/index.js"
+
 import layout from "../../styles/Home.module.css";
 
 class UserProfile extends Component {
@@ -24,24 +26,31 @@ class UserProfile extends Component {
     }
   }
 
-  componentDidMount() {
-    fetch('http://jsonplaceholder.typicode.com/users')
-      .then(res => res.json())
-      .then(res => res.filter(el => el.id == this.state.user.id))
-      .then(res => {
-        this.setState({
-          user: res[0]
-        });
-      });
+  async componentDidMount() {
+    // fetch('http://jsonplaceholder.typicode.com/users')
+    //   .then(res => res.json())
+    //   .then(res => res.filter(el => el.id == this.state.user.id))
+    //   .then(res => {
+    //     this.setState({
+    //       user: res[0]
+    //     });
+    //   });
+    //
+    // fetch('http://jsonplaceholder.typicode.com/posts')
+    //   .then(res => res.json())
+    //   .then(res => res.filter(el => el.userId == this.state.user.id))
+    //   .then(res => {
+    //     this.setState({
+    //       posts: res.slice(0,5)
+    //     })
+    //   })
 
-    fetch('http://jsonplaceholder.typicode.com/posts')
-      .then(res => res.json())
-      .then(res => res.filter(el => el.userId == this.state.user.id))
-      .then(res => {
-        this.setState({
-          posts: res.slice(0,5)
-        })
-      })
+    let user = await store.users.filter(el => el.id     == this.state.user.id);
+    let post = await store.posts.filter(el => el.userId == this.state.user.id);
+    this.setState({
+      user:  user[0],
+      posts: post.slice(0,5)
+    })
   }
 
   render() {

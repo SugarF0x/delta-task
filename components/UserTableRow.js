@@ -1,13 +1,12 @@
-import { Component } from "react";
 import { TableCell, TableRow } from "@material-ui/core";
-import Link from "next/link";
-import { observer } from 'mobx-react';
-import store from '../store/index.js'
+import { Component } from "react";
+import Link          from "next/link";
+import { observer }  from 'mobx-react';
+import store         from '../store/index.js'
 
 class UserTableRow extends Component {
   constructor(props) {
     super(props);
-    // TODO: move this to MobX
     this.state = {
       user: props.user,
       status: 'standby',
