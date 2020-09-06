@@ -1,122 +1,19 @@
-import Head          from 'next/head'
-import Link          from 'next/link'
-import { Component } from 'react'
+import Head          from 'next/head';
+import Link          from 'next/link';
 
 import {
   Container,
   Box,
-  Typography,
-  TableContainer,
-  Table,
-  TableHead,
-  TableRow,
-  TableCell,
-  TableBody
-} from '@material-ui/core'
+  Typography
+} from '@material-ui/core';
+
+import store from '../../store/index.js';
 
 import layout from "../../styles/Home.module.css";
 
-class UserTable extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      users: []
-    }
-  }
+import UserTable from '../../components/UserTable.js';
 
-  componentDidMount() {
-    fetch('http://jsonplaceholder.typicode.com/users')
-      .then(res => res.json())
-      .then(res => {
-        this.setState({
-          users: res
-        })
-      })
-  }
-
-  render() {
-    return (
-      <TableContainer>
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell>name</TableCell>
-              <TableCell>id</TableCell>
-              <TableCell>email</TableCell>
-              <TableCell>buttons</TableCell>
-              <TableCell>status</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {this.state.users.map(entry => (
-              <UserTableRow user={entry} key={entry.id}/>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-    )
-  }
-}
-
-class UserTableRow extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      user: props.user,
-      status: 'standby',
-      styles: {
-        success: {
-          color: 'lightgreen'
-        },
-        pending: {
-          color: 'yellowgreen'
-        },
-        standby: {
-          color: 'gray'
-        }
-      }
-    };
-
-    this.dummyApiCall = this.dummyApiCall.bind(this);
-  }
-
-  dummyApiCall() {
-    this.setState({
-      status: 'pending'
-    });
-    fetch('/api/dummy')
-      .then(res => res.json())
-      .then(res => {
-        if (res.result) {
-          this.setState({
-            status: 'success'
-          })
-        } else {
-          this.setState({
-            status: 'failed'
-          })
-        }
-      })
-  }
-
-  render() {
-    return (
-      <TableRow key={this.state.user.name}>
-        <TableCell>{this.state.user.name}</TableCell>
-        <TableCell>{this.state.user.id}</TableCell>
-        <TableCell>{this.state.user.email}</TableCell>
-        <TableCell >
-          <button onClick={this.dummyApiCall}>edit</button>
-          <button onClick={this.dummyApiCall}>delete</button>
-          <Link href={`users/${this.state.user.id}`}>
-            <button>inspect</button>
-          </Link>
-        </TableCell>
-        <TableCell style={this.state.styles[this.state.status]}>{this.state.status}</TableCell>
-      </TableRow>
-    )
-  }
-}
+  //
 
 export default function Users() {
   return (
