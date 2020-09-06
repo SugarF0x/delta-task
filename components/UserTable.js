@@ -1,24 +1,13 @@
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@material-ui/core";
 import { Component } from "react";
 import { observer }  from 'mobx-react';
-import store         from '../store/index.js'
 import UserTableRow  from './UserTableRow.js';
 
-class UserTable extends Component {
-  // componentDidMount() {
-  //   // TODO: replace fetch with Store distpatch
-  //
-  //   fetch('http://jsonplaceholder.typicode.com/users')
-  //     .then(res => res.json())
-  //     .then(res => {
-  //       this.setState({
-  //         users: res
-  //       })
-  //     })
-  // }
+import store from '../store/users.js'
 
+class UserTable extends Component {
   render() {
-    const { users } = store;
+    store.fetchUsers();
     return (
       <TableContainer>
         <Table>
@@ -32,7 +21,7 @@ class UserTable extends Component {
             </TableRow>
           </TableHead>
           <TableBody>
-            {users.map(entry => (
+            {store.users.map(entry => (
               <UserTableRow user={entry} key={entry.id}/>
             ))}
           </TableBody>

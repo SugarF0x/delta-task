@@ -2,7 +2,7 @@ import { TableCell, TableRow } from "@material-ui/core";
 import { Component } from "react";
 import Link          from "next/link";
 import { observer }  from 'mobx-react';
-import store         from '../store/index.js'
+import store         from '../store/users.js'
 
 class UserTableRow extends Component {
   constructor(props) {

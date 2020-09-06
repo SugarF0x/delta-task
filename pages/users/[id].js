@@ -11,7 +11,7 @@ import {
   CardContent
 } from '@material-ui/core';
 
-import store from "../../store/index.js"
+import store from "../../store/users.js"
 
 import layout from "../../styles/Home.module.css";
 
@@ -27,24 +27,8 @@ class UserProfile extends Component {
   }
 
   async componentDidMount() {
-    // fetch('http://jsonplaceholder.typicode.com/users')
-    //   .then(res => res.json())
-    //   .then(res => res.filter(el => el.id == this.state.user.id))
-    //   .then(res => {
-    //     this.setState({
-    //       user: res[0]
-    //     });
-    //   });
-    //
-    // fetch('http://jsonplaceholder.typicode.com/posts')
-    //   .then(res => res.json())
-    //   .then(res => res.filter(el => el.userId == this.state.user.id))
-    //   .then(res => {
-    //     this.setState({
-    //       posts: res.slice(0,5)
-    //     })
-    //   })
-
+    await store.fetchUsers();
+    await store.fetchPosts();
     let user = await store.users.filter(el => el.id     == this.state.user.id);
     let post = await store.posts.filter(el => el.userId == this.state.user.id);
     this.setState({
@@ -54,24 +38,36 @@ class UserProfile extends Component {
   }
 
   render() {
-    return (
-      <Card>
-        <CardContent>
-          <Typography variant="h2" gutterBottom>
-            { this.state.user.name }
-          </Typography>
-          {this.state.posts.map(entry => {
-              return (
-                <Container key={entry.id}>
-                  <Typography variant="h5">{entry.title}</Typography>
-                  <p>{entry.body}</p>
-                </Container>
-              )
-            }
-          )}
-        </CardContent>
-      </Card>
-    );
+    if (this.state.posts.length) {
+      return (
+        <Card>
+          <CardContent>
+            <Typography variant="h2" gutterBottom>
+              {this.state.user.name}
+            </Typography>
+            {this.state.posts.map(entry => {
+                return (
+                  <Container key={entry.id}>
+                    <Typography variant="h5">{entry.title}</Typography>
+                    <p>{entry.body}</p>
+                  </Container>
+                )
+              }
+            )}
+          </CardContent>
+        </Card>
+      );
+  } else {
+      return (
+        <Card>
+          <CardContent>
+            <Typography variant="h2" gutterBottom>
+              User not found
+            </Typography>
+          </CardContent>
+        </Card>
+      );
+    }
   }
 }
 

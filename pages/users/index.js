@@ -1,13 +1,11 @@
-import Head          from 'next/head';
-import Link          from 'next/link';
+import Head  from 'next/head';
+import Link  from 'next/link';
 
 import {
   Container,
   Box,
   Typography
 } from '@material-ui/core';
-
-import store from '../../store/index.js';
 
 import layout from "../../styles/Home.module.css";
 
