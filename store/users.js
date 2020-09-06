@@ -1,8 +1,10 @@
 import { decorate, observable, action } from 'mobx';
 
 class Users {
-  users = [];
-  posts = [];
+  constructor() {
+    this.users = [];
+    this.posts = [];
+  }
 
   setUsers(payload) {
     this.users = payload;
@@ -30,4 +32,4 @@ decorate(Users, {
   fetchPosts: action
 })
 
-export default new Users();
+export default Users;

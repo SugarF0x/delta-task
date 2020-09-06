@@ -7,7 +7,9 @@ import Typography from '@material-ui/core/Typography';
 
 import styles from "../styles/Home.module.css";
 
-export default function Home() {
+import { inject, observer } from 'mobx-react'
+
+function Home() {
   return (
     <div className={styles.container}>
       <Head>
@@ -48,3 +50,5 @@ export default function Home() {
     </div>
   )
 }
+
+export default inject('usersStore')(observer(Home));

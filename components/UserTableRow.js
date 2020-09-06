@@ -1,8 +1,7 @@
 import { TableCell, TableRow } from "@material-ui/core";
-import { Component } from "react";
-import Link          from "next/link";
-import { observer }  from 'mobx-react';
-import store         from '../store/users.js'
+import { Component }           from "react";
+import Link                    from "next/link";
+import { inject, observer }    from 'mobx-react';
 
 class UserTableRow extends Component {
   constructor(props) {
@@ -64,4 +63,4 @@ class UserTableRow extends Component {
   }
 }
 
-export default observer(UserTableRow)
+export default inject('usersStore')(observer(UserTableRow))

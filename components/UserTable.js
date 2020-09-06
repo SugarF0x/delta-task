@@ -1,13 +1,17 @@
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@material-ui/core";
-import { Component } from "react";
-import { observer }  from 'mobx-react';
-import UserTableRow  from './UserTableRow.js';
-
-import store from '../store/users.js'
+import UserTableRow         from './UserTableRow.js';
+import React, { Component } from 'react';
+import { inject, observer } from 'mobx-react';
 
 class UserTable extends Component {
+  static async getInitialProps({ mobxStore }) {
+    await mobxStore.usersStore.fetchUsers();
+    return { users: mobxStore.usersStore.users };
+  }
+
   render() {
-    store.fetchUsers();
+    this.props.usersStore.fetchUsers();
+    const { users } = this.props.usersStore;
     return (
       <TableContainer>
         <Table>
@@ -21,7 +25,7 @@ class UserTable extends Component {
             </TableRow>
           </TableHead>
           <TableBody>
-            {store.users.map(entry => (
+            {users.map(entry => (
               <UserTableRow user={entry} key={entry.id}/>
             ))}
           </TableBody>
@@ -31,4 +35,4 @@ class UserTable extends Component {
   }
 }
 
-export default observer(UserTable)
+export default inject('usersStore')(observer(UserTable));
