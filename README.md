@@ -12,6 +12,9 @@ npm run build
 
 # Serve production build
 npm run start
+
+# Generate static SPA without SSR
+npm run export
 ```
 
 ## Commit syntax 
@@ -50,7 +53,7 @@ npm run start
 ## Дополнительно
 
 - [ ] Перенести запросы на MobX
-- [ ] Отключить SSR
+- [X] Отключить SSR
 
 # О коде
 
