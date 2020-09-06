@@ -1,75 +1,16 @@
 import Head          from 'next/head'
 import Link          from 'next/link'
 import { useRouter } from 'next/router'
-import { Component } from 'react'
+
+import UserProfile from '../../components/UserProfile.js'
 
 import {
   Container,
   Box,
-  Typography,
-  Card,
-  CardContent
+  Typography
 } from '@material-ui/core';
 
-import store from "../../store/users.js"
-
 import layout from "../../styles/Home.module.css";
-
-class UserProfile extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      user: {
-        id: props.id
-      },
-      posts: []
-    }
-  }
-
-  async componentDidMount() {
-    await store.fetchUsers();
-    await store.fetchPosts();
-    let user = await store.users.filter(el => el.id     == this.state.user.id);
-    let post = await store.posts.filter(el => el.userId == this.state.user.id);
-    this.setState({
-      user:  user[0],
-      posts: post.slice(0,5)
-    })
-  }
-
-  render() {
-    if (this.state.posts.length) {
-      return (
-        <Card>
-          <CardContent>
-            <Typography variant="h2" gutterBottom>
-              {this.state.user.name}
-            </Typography>
-            {this.state.posts.map(entry => {
-                return (
-                  <Container key={entry.id}>
-                    <Typography variant="h5">{entry.title}</Typography>
-                    <p>{entry.body}</p>
-                  </Container>
-                )
-              }
-            )}
-          </CardContent>
-        </Card>
-      );
-  } else {
-      return (
-        <Card>
-          <CardContent>
-            <Typography variant="h2" gutterBottom>
-              User not found
-            </Typography>
-          </CardContent>
-        </Card>
-      );
-    }
-  }
-}
 
 export default function User() {
   const router = useRouter();
@@ -101,7 +42,7 @@ export default function User() {
 
       <main className={layout.main}>
         <Container>
-          <UserProfile key={id} id={id}/>
+          <UserProfile id={id}/>
         </Container>
       </main>
 

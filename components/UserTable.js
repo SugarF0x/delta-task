@@ -9,8 +9,11 @@ class UserTable extends Component {
     return { users: mobxStore.usersStore.users };
   }
 
-  render() {
+  componentDidMount() {
     this.props.usersStore.fetchUsers();
+  }
+
+  render() {
     const { users } = this.props.usersStore;
     return (
       <TableContainer>
